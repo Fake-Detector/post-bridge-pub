@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+option csharp_namespace = "Fake.Detection.Post.Bridge.Contracts";
+option java_package = "fake.detection.post.bridge.contracts";
+
+import "google/protobuf/timestamp.proto";
+
+message Post {
+  int64 id = 1;
+  DataSource data_source = 2;
+  string author_id = 3;
+  repeated Item items = 4;
+  google.protobuf.Timestamp created_at = 5;
+  string external_id = 6;
+}
+
+message Item {
+  string id = 1;
+  int64 post_id = 2;
+  ItemType type = 3;
+  string data = 4;
+  repeated Feature features = 5;
+}
+
+message Feature {
+  int64 id = 1;
+  string item_id = 2;
+  FeatureType type = 3;
+  string text = 4;
+}
+
+enum DataSource {
+  Author = 0;
+  TgChannel = 1;
+  News = 2;
+}
+
+enum ItemType {
+  Text = 0;
+  Image = 1;
+  ImageUrl = 2;
+  Audio = 3;
+  AudioUrl = 4;
+  Video = 5;
+  VideoUrl = 6;
+}
+
+enum FeatureType {
+  Trust = 0;
+  Mood = 1;
+  Tag = 2;
+  Link = 3;
+  Transcription = 4;
+  AiGenerated = 5;
+}

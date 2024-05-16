@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{2FE03B12-A0C5-48CC-9168-E07E30AB1D07}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Detection.Post.Bridge.Api", "src\Fake.Detection.Post.Bridge.Api\Fake.Detection.Post.Bridge.Api.csproj", "{C677E72A-3769-4E71-B287-0BC0E91D392A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Detection.Post.Bridge.Dal", "src\Fake.Detection.Post.Bridge.Dal\Fake.Detection.Post.Bridge.Dal.csproj", "{9FC4B6FA-6843-475A-BDEB-2E5CF5B2D7E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Fake.Detection.Post.Bridge.Bll", "src\Fake.Detection.Post.Bridge.Bll\Fake.Detection.Post.Bridge.Bll.csproj", "{B59DAC3C-238C-4941-9863-22F4EC7FBAE9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "common", "common", "{14686A42-4B84-4C56-9194-FBF798EEF229}"
+	ProjectSection(SolutionItems) = preProject
+		docker-compose.yml = docker-compose.yml
+		.gitignore = .gitignore
+		README.md = README.md
+		fakebridge.pfx = fakebridge.pfx
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcTestService", "src\GrpcTestService\GrpcTestService.csproj", "{465A44F5-8B29-4D33-861D-6A22265E4B87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C677E72A-3769-4E71-B287-0BC0E91D392A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C677E72A-3769-4E71-B287-0BC0E91D392A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C677E72A-3769-4E71-B287-0BC0E91D392A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C677E72A-3769-4E71-B287-0BC0E91D392A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FC4B6FA-6843-475A-BDEB-2E5CF5B2D7E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FC4B6FA-6843-475A-BDEB-2E5CF5B2D7E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FC4B6FA-6843-475A-BDEB-2E5CF5B2D7E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FC4B6FA-6843-475A-BDEB-2E5CF5B2D7E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B59DAC3C-238C-4941-9863-22F4EC7FBAE9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B59DAC3C-238C-4941-9863-22F4EC7FBAE9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B59DAC3C-238C-4941-9863-22F4EC7FBAE9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B59DAC3C-238C-4941-9863-22F4EC7FBAE9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{465A44F5-8B29-4D33-861D-6A22265E4B87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{465A44F5-8B29-4D33-861D-6A22265E4B87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{465A44F5-8B29-4D33-861D-6A22265E4B87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{465A44F5-8B29-4D33-861D-6A22265E4B87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C677E72A-3769-4E71-B287-0BC0E91D392A} = {2FE03B12-A0C5-48CC-9168-E07E30AB1D07}
+		{9FC4B6FA-6843-475A-BDEB-2E5CF5B2D7E9} = {2FE03B12-A0C5-48CC-9168-E07E30AB1D07}
+		{B59DAC3C-238C-4941-9863-22F4EC7FBAE9} = {2FE03B12-A0C5-48CC-9168-E07E30AB1D07}
+		{465A44F5-8B29-4D33-861D-6A22265E4B87} = {2FE03B12-A0C5-48CC-9168-E07E30AB1D07}
+	EndGlobalSection
+EndGlobal

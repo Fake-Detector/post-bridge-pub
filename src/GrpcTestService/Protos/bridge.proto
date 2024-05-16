@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+option csharp_namespace = "Fake.Detection.Post.Bridge.Api";
+
+import "Protos/Contracts/post.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+
+service PostBridgeService {
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+
+  rpc SendPostItem(stream SendPostItemRequest) returns (SendPostItemResponse);
+  
+  rpc ProcessPost(ProcessPostRequest) returns (google.protobuf.Empty);
+  
+  rpc GetPost(GetPostRequest) returns (GetPostResponse);
+}
+
+message CreatePostRequest {
+  int64 author_id = 1;
+  DataSource source = 2;
+}
+
+message CreatePostResponse {
+  int64 post_id = 1;
+}
+
+message SendPostItemRequest {
+  ItemChunk item = 1;
+}
+
+message SendPostItemResponse {
+  RequestResult result = 1;
+}
+
+message ProcessPostRequest {
+  int64 post_id = 1;
+}
+
+message GetPostRequest {
+  int64 post_id = 1;
+}
+
+message GetPostResponse {
+  Post post = 1;
+}
+
+message ItemChunk {
+  int64 post_id = 1;
+  MetaData meta_data = 2;
+  bytes chunk = 3;
+}
+
+message MetaData {
+  ItemType type = 1;
+  google.protobuf.StringValue format = 3;
+}
+
+enum RequestResult {
+  FAIL = 0;
+  OK = 1;
+}

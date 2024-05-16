@@ -1,0 +1,137 @@
+syntax = "proto3";
+
+option csharp_namespace = "Fake.Detection.Post.Bridge.Api";
+option java_package = "fake.detection.post.bridge.api";
+
+import "Protos/Contracts/post.proto";
+import "google/protobuf/wrappers.proto";
+import "google/protobuf/empty.proto";
+
+
+service PostBridgeService {
+  rpc CreatePost(CreatePostRequest) returns (CreatePostResponse);
+
+  rpc SendPostItem(stream SendPostItemRequest) returns (SendPostItemResponse);
+
+  rpc ProcessPost(ProcessPostRequest) returns (google.protobuf.Empty);
+
+  rpc ProcessItem(ProcessItemRequest) returns (google.protobuf.Empty);
+
+  rpc GetPost(GetPostRequest) returns (GetPostResponse);
+
+  rpc GetPostHistory(GetPostHistoryRequest) returns (GetPostHistoryResponse);
+
+  rpc CheckNews(CheckNewsRequest) returns (CheckNewsResponse);
+
+  rpc GetNews(GetNewsRequest) returns (GetNewsResponse);
+
+  rpc GetAllNews(GetAllNewsRequest) returns (GetAllNewsResponse);
+}
+
+message CreatePostRequest {
+  string author_id = 1;
+  DataSource source = 2;
+  google.protobuf.StringValue external_id = 3;
+}
+
+message CreatePostResponse {
+  int64 post_id = 1;
+}
+
+message SendPostItemRequest {
+  ItemChunk item = 1;
+}
+
+message SendPostItemResponse {
+  RequestResult result = 1;
+  string item_id = 2;
+}
+
+message ProcessPostRequest {
+  int64 post_id = 1;
+}
+
+message ProcessItemRequest {
+  int64 post_id = 1;
+  string item_id = 2;
+}
+
+message GetPostRequest {
+  int64 post_id = 1;
+  google.protobuf.StringValue external_id = 2;
+  bool use_external_id = 3;
+}
+
+message GetPostResponse {
+  Post post = 1;
+}
+
+
+message GetPostHistoryRequest {
+  string author_id = 1;
+  DataSource source = 2;
+}
+
+message GetPostHistoryResponse {
+  repeated Post posts = 1;
+}
+
+message ItemChunk {
+  int64 post_id = 1;
+  MetaData meta_data = 2;
+  bytes chunk = 3;
+}
+
+message MetaData {
+  ItemType type = 1;
+  google.protobuf.StringValue format = 3;
+}
+
+enum RequestResult {
+  FAIL = 0;
+  OK = 1;
+}
+
+message CheckNewsRequest {
+  Site site = 1;
+  string url = 2;
+}
+
+message CheckNewsResponse {
+  bool is_success = 1;
+  int64 post_id = 2;
+}
+
+message GetNewsRequest {
+  Site site = 1;
+  DataSource source = 2;
+}
+
+message GetNewsResponse {
+  repeated Post posts = 1;
+}
+
+message GetAllNewsRequest {
+  Site site = 1;
+  int64 page = 2;
+}
+
+message GetAllNewsResponse {
+  repeated ShortNews news = 1;
+}
+
+message ShortNews {
+  string url = 1;
+  string content = 2;
+}
+
+enum Site {
+  AutoDetect = 0;
+  LentaRu = 1;
+  IzRu = 2;
+  Ria = 3;
+  Interfax = 4;
+  Tass = 5;
+  BBC = 6;
+  CNN = 7;
+}

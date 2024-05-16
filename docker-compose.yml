@@ -1,0 +1,45 @@
+version: "3"
+services:
+    bridge-fake-db:
+      image: postgres
+      restart: always
+      container_name: bridge-fake-db
+      environment:
+        POSTGRES_USER: "bridge-fake"
+        POSTGRES_DB: "bridge-fake"
+        POSTGRES_PASSWORD: "123456"
+      ports:
+          - "15440:5432"
+      networks:
+        - shared_network
+            
+    bridge-fake-db-dev:
+      image: postgres
+      restart: always
+      container_name: bridge-fake-db-dev
+      environment:
+        POSTGRES_USER: "bridge-fake-dev"
+        POSTGRES_DB: "bridge-fake-dev"
+        POSTGRES_PASSWORD: "123456"
+      ports:
+        - "15450:5432"
+      networks:
+        - shared_network
+
+    fake.detection.post.bridge.api:
+      image: fake.detection.post.bridge.api
+      build:
+        context: .
+        dockerfile: src/Fake.Detection.Post.Bridge.Api/Dockerfile
+      depends_on:
+        - bridge-fake-db
+      ports:
+        - "5136:5136"
+        - "7136:7136"
+      restart: always
+      networks:
+        - shared_network
+
+networks:
+  shared_network:
+    external: true

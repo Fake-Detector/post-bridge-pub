@@ -1,0 +1,63 @@
+syntax = "proto3";
+
+import "google/protobuf/wrappers.proto";
+
+package news_getter;
+
+service NewsGetter {
+  rpc SearchNews(SearchNewsRequest) returns (SearchNewsResponse);
+  rpc GetNewsContent(GetNewsContentRequest) returns (GetNewsContentResponse);
+  rpc GetListNews(GetListNewsRequest) returns (GetListNewsResponse);
+}
+
+message SearchNewsRequest {
+  string query = 1;
+  repeated Site sites = 2;
+  int32 max_site_links = 3;
+}
+
+message SearchNewsResponse {
+  repeated string links = 1;
+}
+
+message GetNewsContentRequest {
+  string url = 1;
+  Site scraper = 2;
+}
+
+message GetNewsContentResponse {
+  bool is_success = 1;
+  string url = 2;
+  string title = 3;
+  string content = 4;
+  repeated string images = 5;
+  repeated string videos = 6;
+  Site source_type = 7;
+}
+
+message GetListNewsRequest {
+  Site source_type = 1;
+  int64 page = 2;
+}
+
+message GetListNewsResponse {
+  repeated ShortNews news = 1;
+}
+
+message ShortNews {
+  string url = 1;
+  string content = 2;
+  google.protobuf.StringValue title = 3;
+  google.protobuf.StringValue image = 4;
+}
+
+enum Site {
+  AutoDetect = 0;
+  LentaRu = 1;
+  IzRu = 2;
+  Ria = 3;
+  Interfax = 4;
+  Tass = 5;
+  BBC = 6;
+  CNN = 7;
+}
